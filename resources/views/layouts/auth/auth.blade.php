@@ -3,13 +3,13 @@
         <div class="mx-auto max-w-screen-2xl p-4 md:p-6 2xl:p-10">
             <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <h2 class="text-title-md2 font-bold text-black dark:text-white">
-                    Verify Email
+                    @yield('title')
                 </h2>
 
                 <nav>
                     <ol class="flex items-center gap-2">
-                        <li><a class="font-medium" href="/">Dashboard /</a></li>
-                        <li class="font-medium text-primary">Verify Email</li>
+                        <li><a class="font-medium" href="/">Home /</a></li>
+                        <li class="font-medium text-primary">@yield('title')</li>
                     </ol>
                 </nav>
             </div>
@@ -24,8 +24,7 @@
                             </a>
 
                             <p class="font-medium 2xl:px-20">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                                suspendisse.
+                                Haiwan is a platform that connects users with doctors and clinics.
                             </p>
 
                             <span class="mt-15 inline-block">
@@ -114,48 +113,17 @@
                             </span>
                         </div>
                     </div>
+
                     <div class="w-full border-stroke dark:border-strokedark xl:w-1/2 xl:border-l-2">
                         <div class="w-full p-4 sm:p-12.5 xl:p-17.5">
-                            {{-- <span class="mb-1.5 block font-medium">Start for free</span> --}}
                             <h2 class="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
-                                Verify Email
+                                @yield('title')
                             </h2>
-                            <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-                                {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-                            </div>
-
-                            @if (session('status') == 'verification-link-sent')
-                                <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-                                    {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-                                </div>
-                            @endif
-
-                            <div class="mt-4 flex flex-col">
-                                <form method="POST" action="{{ route('verification.send') }}">
-                                    @csrf
-
-                                    <div>
-                                        <button type="submit"
-                                            class="w-full cursor-pointer rounded-lg border border-primary bg-primary p-4 font-medium text-white transition hover:bg-opacity-90">
-                                            Resend Email Verification
-                                        </button>
-                                    </div>
-                                </form>
-
-                                <form method="POST" action="{{ route('logout') }}" class="text-center">
-                                    @csrf
-
-                                    <button type="submit"
-                                        class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800 mt-2">
-                                        {{ __('Log Out') }}
-                                    </button>
-                                </form>
-                            </div>
+                            @yield('auth-content')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
 </x-guest-layout>
